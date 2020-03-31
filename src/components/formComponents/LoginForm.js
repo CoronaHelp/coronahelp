@@ -89,7 +89,7 @@ const LoginForm = () => {
                 {formErrors.username ? <Error>{formErrors.username}</Error> : null}
             </FormSection>
             <FormSection>
-                <Label htmlFor="password"> * Passwords</Label>
+                <Label htmlFor="password"> * Password</Label>
                 <Input id="password" name="password" type="password" placeholder="password" value={formState.password} onChange={updateForm}/>
                 {formErrors.password ? <Error>{formErrors.password}</Error> : null} 
             </FormSection> 

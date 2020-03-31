@@ -132,12 +132,12 @@ const SignUpForm = () => {
                 {formErrors.lastName ? <Error>{formErrors.lastName}</Error> : null}
             </FormSection>
             <FormSection>
-                <Label htmlFor="zipcode"> * Zipcode</Label>
+                <Label htmlFor="zipcode"> * Zip Code</Label>
                 <Input id="zipcode" name="zipcode" type="text" placeholder="5 digit zipcode" value={formState.zipcode} onChange={updateForm}/>
                 {formErrors.zipcode ? <Error>{formErrors.zipcode}</Error> : null}
             </FormSection>
             <FormSection>
-                <Label htmlFor="password"> * Passwords</Label>
+                <Label htmlFor="password"> * Password</Label>
                 <Input id="password" name="password" type="password" placeholder="password" value={formState.password} onChange={updateForm}/>
                 {formErrors.password ? <Error>{formErrors.password}</Error> : null} 
             </FormSection> 
