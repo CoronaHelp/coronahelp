@@ -123,12 +123,12 @@ const SignUpForm = () => {
             </FormSection>
             <FormSection>
                 <Label htmlFor="firstName"> * First Name</Label>
-                <Input id="firstName" name="firstName" type="text" placeholder="firstName" value={formState.name}  onChange={updateForm}/>
+                <Input id="firstName" name="firstName" type="text" placeholder="first name" value={formState.name}  onChange={updateForm}/>
                 {formErrors.firstName ? <Error>{formErrors.firstName}</Error> : null}
             </FormSection>
             <FormSection>
                 <Label htmlFor="lastName"> * Last Name</Label>
-                <Input id="lastName" name="lastName" type="text" placeholder="lastName" value={formState.name}  onChange={updateForm}/>
+                <Input id="lastName" name="lastName" type="text" placeholder="last name" value={formState.name}  onChange={updateForm}/>
                 {formErrors.lastName ? <Error>{formErrors.lastName}</Error> : null}
             </FormSection>
             <FormSection>
@@ -143,7 +143,7 @@ const SignUpForm = () => {
             </FormSection> 
             <FormSection>
                 <Label htmlFor="passwordConfirmation"> * Confirm Password</Label>
-                <Input id="passwordConfirmation" name="passwordConfirmation" type="password" placeholder="Confirm Password" value={formState.passwordConfirmation} onChange={updateForm}/>
+                <Input id="passwordConfirmation" name="passwordConfirmation" type="password" placeholder="confirm password" value={formState.passwordConfirmation} onChange={updateForm}/>
                 {formState.password === formState.passwordConfirmation ? null : <Error>{formErrors.passwordConfirmation} </Error>}
             </FormSection>
             <Button disabled={submitDisabled}>Create Account</Button>
