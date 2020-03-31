@@ -1,5 +1,5 @@
 import React from 'react';
-import Requests from "./components/neededSupplies/Requests.js"
+import Requests from "./components/neededSupplies/RequestsDisplay.js"
 import { Route } from 'react-router-dom';
 import './App.css';
 
