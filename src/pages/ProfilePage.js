@@ -1,5 +1,15 @@
 import React from "react";
-import { UncontrolledCollapse, Button, ListGroup } from "reactstrap";
+import {
+  UncontrolledCollapse,
+  Button,
+  ListGroup,
+  Card,
+  CardTitle,
+  CardText,
+  CardBody,
+  ListGroupItem,
+  Badge
+} from "reactstrap";
 import styled from "styled-components";
 
 import { dummyRequests, dummyTips } from "../dummyData/dummyData";
@@ -16,11 +26,40 @@ const PostsContainer = styled.div`
   width: 65%;
 `;
 
+const UserInfoCard = styled(Card)`
+  margin-bottom: 20px;
+`;
+
+const UserInfoCardTitle = styled(CardTitle)`
+  font-size: 20px;
+  font-weight: 500;
+`;
+
+const profileInfo = {
+  userName: "thom!",
+  firstName: "Thomas",
+  lastName: "Huynh",
+  address: "Sunny Socal"
+}
 const ProfilePage = () => {
   return (
     <Container>
-      <ProfileImageCard />
+      <ProfileImageCard profileInfo={profileInfo} />
       <PostsContainer>
+        <UserInfoCard>
+          <CardBody>
+            <UserInfoCardTitle>User Info</UserInfoCardTitle>
+            <CardText>
+              Within Radius? <span style={{ color: "green" }}>Yes!</span>
+            </CardText>
+            <CardText>
+              Number of Requests <Badge>24</Badge>
+            </CardText>
+            <CardText>
+              Number of Tips <Badge>5</Badge>
+            </CardText>
+          </CardBody>
+        </UserInfoCard>
         <div>
           <Button
             outline
@@ -38,7 +77,6 @@ const ProfilePage = () => {
             </ListGroup>
           </UncontrolledCollapse>
         </div>
-        <hr/>
         <div>
           <Button
             outline

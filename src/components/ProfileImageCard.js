@@ -21,12 +21,13 @@ const StyledCardTitle = styled(CardTitle)`
 `
 
 
-const ProfileImageCard = () => {
+const ProfileImageCard = ({ profileInfo }) => {
+  const { userName, firstName, lastName, address } = profileInfo
   return (
     <StyledCard>
       <CardBody>
-        <StyledCardTitle>Username</StyledCardTitle>
-        <CardSubtitle>First Last</CardSubtitle>
+        <StyledCardTitle>{userName}</StyledCardTitle>
+        <CardSubtitle>{firstName} {lastName}</CardSubtitle>
       </CardBody>
       <CardImg
         src="https://www.aalforum.eu/wp-content/uploads/2016/04/profile-placeholder.png"
@@ -34,7 +35,7 @@ const ProfileImageCard = () => {
       />
       <CardBody>
         <CardText>
-          Location
+          {address}
         </CardText>
       </CardBody>
     </StyledCard>
