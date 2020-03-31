@@ -9,10 +9,6 @@ export const FormSection = styled.div`
     margin: 4px 0;
 `;
 
-// ${theme.breakpoints.tablet}{
-//     flex-direction: ${props => props.checkbox ? 'row' : 'column'}
-// }
-
 export const Button = styled.button`
     background-color: ${props => props.disabled ? 'grey' : '#7F7FFF'};
     color: white;
@@ -34,12 +30,6 @@ export const Form = styled.form`
     align-items: center;
     
 `;
-
-// ${theme.breakpoints.tablet}{
-//     width: ${props => props.auth ? '340px' : '900px'};
-//     flex-direction: ${props => props.auth ? 'column' : 'row'};
-//     flex-wrap: wrap;
-// }
 
 export const Input = styled.input`
     width: 100%;
