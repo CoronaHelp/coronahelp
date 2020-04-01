@@ -1,8 +1,9 @@
 import React from "react";
+import { Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Header from "./components/Header";
-import Profile from "./pages/ProfilePage";
-import "bootstrap/dist/css/bootstrap.min.css";
+import ProfilePage from "./pages/ProfilePage";
 import "./styles.css";
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <div className="app-container">
       <Header />
       <div className="container">
-        <Profile />
+        <Route path="/profile/:id" component={ProfilePage} />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const StyledNavbarBrand = styled(NavbarBrand)`
     background: white;
     padding: 5px 20px;
     border-radius: 20px;
-    border: 3px solid green;
+    border: 3px solid #2C88D9;
 `
 
 const StyledNavbar = styled(Navbar)`

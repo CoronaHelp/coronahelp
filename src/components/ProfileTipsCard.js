@@ -6,6 +6,11 @@ import {
 } from "reactstrap";
 import styled from "styled-components";
 
+
+const StyledListGroupItem = styled(ListGroupItem)`
+  border-left: 3px solid green;
+`
+
 const LocationNameText = styled(ListGroupItemText)`
   margin-bottom: 0px;
 `;
@@ -14,13 +19,13 @@ const LocationAddressText = styled(ListGroupItemText)`
   color: gray;
 `;
 
-const ProfileTipsCard = ({ itemName, name, address }) => {
+const ProfileTipsCard = ({ tip, name, address }) => {
   return (
-    <ListGroupItem style={{ marginBottom: 10 }}>
-      <ListGroupItemHeading>{itemName}</ListGroupItemHeading>
+    <StyledListGroupItem style={{ marginBottom: 10 }}>
+      <ListGroupItemHeading>{tip}</ListGroupItemHeading>
       <LocationNameText>{name}</LocationNameText>
       <LocationAddressText>{address}</LocationAddressText>
-    </ListGroupItem>
+    </StyledListGroupItem>
   );
 };
 
