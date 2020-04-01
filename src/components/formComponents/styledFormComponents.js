@@ -29,7 +29,7 @@ export const FormSection = styled.div`
 `;
 
 export const FormButton = styled.button`
-    background-color: ${props => props.disabled ? 'grey' : theme.color.main};
+    background-color: ${props => props.disabled ? 'grey' : 'black'};
     color: white;
     width: 150px;
     height: 35px;
