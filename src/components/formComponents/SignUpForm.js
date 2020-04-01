@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
-import { Button, FormSection, Form, Label, Input, Error } from './styledFormComponents';
+import { FormButton, FormSection, Form, Label, Input, Error, FormContainer, FormTitle } from './styledFormComponents';
 
 const SignUpForm = () => {
 
@@ -110,44 +110,47 @@ const SignUpForm = () => {
     }
 
     return (
-        <Form onSubmit={submitForm}>
-            <FormSection>
-                <Label htmlFor="username"> * Username</Label>
-                <Input id="username" name="username" type="text" placeholder="username" value={formState.name}  onChange={updateForm}/>
-                {formErrors.username ? <Error>{formErrors.username}</Error> : null}
-            </FormSection>
-            <FormSection>
-                <Label htmlFor="email"> * Email</Label>
-                <Input id="email" name="email" type="text" placeholder="email" value={formState.email} onChange={updateForm}/>
-                {formErrors.email ? <Error>{formErrors.email}</Error> : null}
-            </FormSection>
-            <FormSection>
-                <Label htmlFor="firstName"> * First Name</Label>
-                <Input id="firstName" name="firstName" type="text" placeholder="first name" value={formState.name}  onChange={updateForm}/>
-                {formErrors.firstName ? <Error>{formErrors.firstName}</Error> : null}
-            </FormSection>
-            <FormSection>
-                <Label htmlFor="lastName"> * Last Name</Label>
-                <Input id="lastName" name="lastName" type="text" placeholder="last name" value={formState.name}  onChange={updateForm}/>
-                {formErrors.lastName ? <Error>{formErrors.lastName}</Error> : null}
-            </FormSection>
-            <FormSection>
-                <Label htmlFor="zipcode"> * Zip Code</Label>
-                <Input id="zipcode" name="zipcode" type="text" placeholder="5 digit zipcode" value={formState.zipcode} onChange={updateForm}/>
-                {formErrors.zipcode ? <Error>{formErrors.zipcode}</Error> : null}
-            </FormSection>
-            <FormSection>
-                <Label htmlFor="password"> * Password</Label>
-                <Input id="password" name="password" type="password" placeholder="password" value={formState.password} onChange={updateForm}/>
-                {formErrors.password ? <Error>{formErrors.password}</Error> : null} 
-            </FormSection> 
-            <FormSection>
-                <Label htmlFor="passwordConfirmation"> * Confirm Password</Label>
-                <Input id="passwordConfirmation" name="passwordConfirmation" type="password" placeholder="confirm password" value={formState.passwordConfirmation} onChange={updateForm}/>
-                {formState.password === formState.passwordConfirmation ? null : <Error>{formErrors.passwordConfirmation} </Error>}
-            </FormSection>
-            <Button disabled={submitDisabled}>Create Account</Button>
-        </Form>
+        <FormContainer login="signup">
+            <FormTitle>Welcome Aboard!</FormTitle>
+            <Form onSubmit={submitForm}>
+                <FormSection>
+                    <Label htmlFor="username"> * Username</Label>
+                    <Input id="username" name="username" type="text" placeholder="username" value={formState.name}  onChange={updateForm}/>
+                    {formErrors.username ? <Error>{formErrors.username}</Error> : null}
+                </FormSection>
+                <FormSection>
+                    <Label htmlFor="email"> * Email</Label>
+                    <Input id="email" name="email" type="text" placeholder="email" value={formState.email} onChange={updateForm}/>
+                    {formErrors.email ? <Error>{formErrors.email}</Error> : null}
+                </FormSection>
+                <FormSection>
+                    <Label htmlFor="firstName"> * First Name</Label>
+                    <Input id="firstName" name="firstName" type="text" placeholder="first name" value={formState.name}  onChange={updateForm}/>
+                    {formErrors.firstName ? <Error>{formErrors.firstName}</Error> : null}
+                </FormSection>
+                <FormSection>
+                    <Label htmlFor="lastName"> * Last Name</Label>
+                    <Input id="lastName" name="lastName" type="text" placeholder="last name" value={formState.name}  onChange={updateForm}/>
+                    {formErrors.lastName ? <Error>{formErrors.lastName}</Error> : null}
+                </FormSection>
+                <FormSection>
+                    <Label htmlFor="zipcode"> * Zip Code</Label>
+                    <Input id="zipcode" name="zipcode" type="text" placeholder="5 digit zipcode" value={formState.zipcode} onChange={updateForm}/>
+                    {formErrors.zipcode ? <Error>{formErrors.zipcode}</Error> : null}
+                </FormSection>
+                <FormSection>
+                    <Label htmlFor="password"> * Password</Label>
+                    <Input id="password" name="password" type="password" placeholder="password" value={formState.password} onChange={updateForm}/>
+                    {formErrors.password ? <Error>{formErrors.password}</Error> : null} 
+                </FormSection> 
+                <FormSection>
+                    <Label htmlFor="passwordConfirmation"> * Confirm Password</Label>
+                    <Input id="passwordConfirmation" name="passwordConfirmation" type="password" placeholder="confirm password" value={formState.passwordConfirmation} onChange={updateForm}/>
+                    {formState.password === formState.passwordConfirmation ? null : <Error>{formErrors.passwordConfirmation} </Error>}
+                </FormSection>
+                <FormButton disabled={submitDisabled}>Create Account</FormButton>
+            </Form>
+        </FormContainer>
     )
 }
 

@@ -1,22 +1,22 @@
 import React, { useState, useEffect }from 'react'
 import * as yup from 'yup'
 import axios from 'axios'
-import { FormButton, FormSection, Form, Label, Input, Error, FormContainer, FormTitle} from './styledFormComponents';
+import { FormButton, FormSection, Form, Label, Input, Error } from './styledFormComponents';
 
-const LoginForm = () => {
+const QuickSearchForm = () => {
 
     const [submitDisabled, setSubmitDisabled] = useState(true)
 
     const [post, setPost] = useState([])
 
     const [formState, setFormState] = useState({
-        username: "",
-        password: "",
+        zipcode: "",
+        item: ""
     })
 
     const [formErrors, setFormErrors] = useState({
-        username: "",
-        password: "",
+        zipcode: "",
+        item: ""
     })
 
     useEffect(() => {
@@ -28,11 +28,12 @@ const LoginForm = () => {
     }, [formState, submitDisabled])
 
     const formSchema = yup.object().shape({
-        username: yup.string()
-            .required("Please input your username."),
-        password: yup.string()
-            .min(6, "This password must be at least 6 characters long")
-            .required("Please input a password of at least 6 characters"),
+        zipcode: yup.string()
+            .test("5-char-length", "Please enter a 5 digit zipcode", val => val.length === 5)
+            .test("is-number", "Please enter a 5 digit zipcode", val => Number(val))
+            .required("Please input your 5 digit zipcode."),
+        item: yup.string()
+            .required("Please input your last name."),
     })
 
     const validateData = event => {
@@ -74,32 +75,28 @@ const LoginForm = () => {
             console.log("Posted successfully: ", post)
             setPost(response.data)
             setFormState({
-                username: "",
-                password: "",
+                zipcode: "",
+                item: ""
             })
           })
           .catch(error => console.log("Post was not successful: ", error.response))
     }
 
     return (
-        <FormContainer form="login">
-            <div>
-                <FormTitle>Welcome Back!</FormTitle>
-                <Form onSubmit={submitForm}>
-                    <FormSection>
-                        <Label htmlFor="username"> * Username</Label>
-                        <Input id="username" name="username" type="text" placeholder="username" value={formState.name}  onChange={updateForm}/>
-                        {formErrors.username ? <Error>{formErrors.username}</Error> : null}
-                    </FormSection>
-                    <FormSection>
-                        <Label htmlFor="password"> * Password</Label>
-                        <Input id="password" name="password" type="password" placeholder="password" value={formState.password} onChange={updateForm}/>
-                        {formErrors.password ? <Error>{formErrors.password}</Error> : null} 
-                    </FormSection> 
-                    <FormButton disabled={submitDisabled}>Login</FormButton>
-                </Form>
-            </div>
-        </FormContainer>
+        <Form onSubmit={submitForm}>
+            <FormSection>
+                <Label htmlFor="zipcode"> * Zip Code</Label>
+                <Input id="zipcode" name="zipcode" type="text" placeholder="5 digit zipcode" value={formState.zipcode} onChange={updateForm}/>
+                {formErrors.zipcode ? <Error>{formErrors.zipcode}</Error> : null}
+            </FormSection>
+            <FormSection>
+                <Label htmlFor="item"> * Item</Label>
+                <Input id="item" name="item" type="text" placeholder="item" value={formState.password} onChange={updateForm}/>
+                {formErrors.password ? <Error>{formErrors.password}</Error> : null} 
+            </FormSection> 
+            <FormButton disabled={submitDisabled}>Quick Search</FormButton>
+        </Form>
     )
 }
-export default LoginForm
+
+export default QuickSearchForm
