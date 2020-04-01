@@ -1,11 +1,11 @@
 import React from 'react'
 import { Switch, Route, NavLink } from 'react-router-dom'
+import Map from "./components/mapbox/Map.js";
 import SignUpForm from './components/formComponents/SignUpForm'
 import LoginForm from './components/formComponents/LoginForm'
 import LandingPage from './components/landingPageComponents/LandingPage'
 import { Nav, NavLinksSection, StyledLink, SignUpButton } from './components/styledNav'
 import { Footer } from './components/styledFooter'
-import RequestDispaly from "./components/neededSupplies/RequestsDisplay"
 import RequestsDisplay from './components/neededSupplies/RequestsDisplay'
 
 
@@ -43,7 +43,7 @@ function App() {
     <Route exact path = "/requests">
       <RequestsDisplay/>
     </Route>
-    
+    <Route exact path="/map" component ={ Map }/>
     <Footer>
         <a href="">
             <svg id="livetype" xmlns="http://www.w3.org/2000/svg" width="119.66407" height="40" viewBox="0 0 119.66407 40">
