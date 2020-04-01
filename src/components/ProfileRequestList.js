@@ -7,7 +7,7 @@ import Paginator from "./Paginator";
 const ProfileRequestsList = ({ requests }) => {
 
   const [ pages, setPages ] = useState({ start: 0, end: 5 })
-  console.log(pages)
+  
   return (
     <ListGroup>
       {requests.slice(pages.start, pages.end).map((request, i) => (

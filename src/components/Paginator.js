@@ -26,20 +26,31 @@ const Paginator = ({ itemsLength, itemsPerPage, setPages, pages }) => {
     return pageLinks;
   };
 
+  const getNextPage = (pageAmount) => {
+    let nextPage = currentPage + pageAmount
+    if (nextPage > totalPages) {
+      nextPage = totalPages
+    } else if (nextPage < 1) {
+      nextPage = 1
+    }
+    setPages({ start: (nextPage - 1) * itemsPerPage, end: nextPage * itemsPerPage })
+    setCurrentPage(nextPage)
+  }
+
   return (
     <Pagination style={{ marginBottom: 20 }} aria-label="Page navigation example">
       <PaginationItem>
-        <PaginationLink first href="#" />
+        <PaginationLink first onClick={() => getNextPage(-totalPages)} />
       </PaginationItem>
       <PaginationItem>
-        <PaginationLink previous href="#" />
+        <PaginationLink previous onClick={() => getNextPage(-1)} />
       </PaginationItem>
       {generatePageLinks()}
       <PaginationItem>
-        <PaginationLink next href="#" />
+        <PaginationLink next onClick={() => getNextPage(1)} />
       </PaginationItem>
       <PaginationItem>
-        <PaginationLink last href="#" />
+        <PaginationLink last onClick={() => getNextPage(totalPages)} />
       </PaginationItem>
     </Pagination>
   );
