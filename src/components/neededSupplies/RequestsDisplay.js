@@ -13,7 +13,7 @@ const RequestsDisplay = () => {
   };
   const toggle = () => setModal(!modal);
   useEffect(() => {
-    setRequest(needs);
+    setRequest();
   },[]);
   useEffect(() => {
     const results = request.filter(req =>
