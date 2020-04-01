@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Requests from "./Request"
+import "../requests.css"
 const needs = [
   {
     createdTimestamp: "10/24/81",
@@ -18,7 +20,7 @@ const needs = [
   },
   {
     createdTimestamp: "10/24/81",
-    title: "I need help",
+    title: "I need ",
     fullfilled: false,
     item: "diapers",
     message:
@@ -34,7 +36,7 @@ const needs = [
   },
   {
     createdTimestamp: "10/24/81",
-    title: "I need help",
+    title: "help",
     fullfilled: false,
     item: "diapers",
     message:
@@ -43,13 +45,22 @@ const needs = [
 ];
 const RequestsDisplay = () => {
   const [request, setRequest] = useState([]);
+  const [searchResults, setSearchResults] = useState([])
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
   useEffect(() => {
     setRequest(needs);
   },[]);
-
+  
   return (
     <div>
-      {request.map(t => <h1>{t.title}</h1>)}
+      {request.map(t => {
+        return(
+        <div  className = "mycontainer">
+        <h1 onClick = {()=>toggle()}>{t.title}</h1>
+        <Requests toggler ={toggle} title = {t.title} description = {t.message} modal={modal}/>
+        </div>
+      )})}
     </div>
   );
 };
