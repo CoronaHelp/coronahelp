@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import Requests from "./components/neededSupplies/RequestsDisplay.js"
-import { Route } from 'react-router-dom';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      
-      <Route exact path="/" render={props =><Requests />}/>
-    </div>
-=======
 import React from 'react'
 import { Switch, Route, NavLink } from 'react-router-dom'
 import SignUpForm from './components/formComponents/SignUpForm'
@@ -18,6 +5,8 @@ import LoginForm from './components/formComponents/LoginForm'
 import LandingPage from './components/landingPageComponents/LandingPage'
 import { Nav, NavLinksSection, StyledLink, SignUpButton } from './components/styledNav'
 import { Footer } from './components/styledFooter'
+import RequestDispaly from "./components/neededSupplies/RequestsDisplay"
+import RequestsDisplay from './components/neededSupplies/RequestsDisplay'
 
 
 
@@ -46,10 +35,15 @@ function App() {
       <Route path="/login">
         <LoginForm />
       </Route>
-      <Route path="/">
+      <Route exact path="/">
         <LandingPage />
       </Route>
     </Switch>
+
+    <Route exact path = "/requests">
+      <RequestsDisplay/>
+    </Route>
+    
     <Footer>
         <a href="">
             <svg id="livetype" xmlns="http://www.w3.org/2000/svg" width="119.66407" height="40" viewBox="0 0 119.66407 40">
@@ -101,7 +95,6 @@ function App() {
         </a>
     </Footer>
     </>
->>>>>>> 7ec5d860d0e49936eed477b738ac5373bc42b63c
   );
 }
 
