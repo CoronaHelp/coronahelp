@@ -10,7 +10,7 @@ export const FormContainer = styled.div`
     margin-top: 12vh;
     height: ${props => props.form === 'login' ? '76vh' : '88vh'};
     ${theme.breakpoints.tablet} {
-        margin-top: 18vh;
+        margin-top: 22vh;
         height: 82vh;
     }
 `
@@ -29,7 +29,7 @@ export const FormSection = styled.div`
 `;
 
 export const FormButton = styled.button`
-    background-color: ${props => props.disabled ? 'grey' : '#7F7FFF'};
+    background-color: ${props => props.disabled ? 'grey' : theme.color.main};
     color: white;
     width: 150px;
     height: 35px;
@@ -53,7 +53,7 @@ export const Form = styled.form`
 export const Input = styled.input`
     width: 100%;
     height: 30px;
-    border: 1px solid #7F7FFF;
+    border: 1px solid black;
     outline: none;
     border-radius: 5px;
     

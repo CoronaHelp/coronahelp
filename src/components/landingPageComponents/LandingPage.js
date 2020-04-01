@@ -16,13 +16,13 @@ const LandingPage = () => {
                         </div>
                     </HomeHeaderContent>
                 </Section>
-                <hr style={{border: '1px solid #7F7FFF' }}/>
+                <hr style={{border: '1px solid black' }}/>
                 <Section style={{margin: '30px 0 0px'}}>
                     <SectionHeader>Quick Search</SectionHeader>
                     <p style={{textIndent: '40px', width: '450px', marginBottom: '20px'}}>If you don't want to create an account right now, we can still help you find what you're needing right now. Simply fill out the Quick Search form below with your zip code and the item that you need.</p>
                     <QuickSearchForm />
                 </Section>
-                <hr style={{border: '1px solid #7F7FFF', marginTop: '20px'}}/>
+                <hr style={{border: '1px solid black', marginTop: '20px'}}/>
                 <GettingStarted>
                     <SectionHeader>Getting Started</SectionHeader>
                     <StepsContainer>
