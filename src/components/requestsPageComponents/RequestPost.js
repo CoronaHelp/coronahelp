@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { RequestCard, RequestButton, RequestText, RequestStatus, RequestTitle } from './styledRequestComponents'
 import { FormTitle, Form, FormSection, Label, Input } from '../formComponents/styledFormComponents'
 
 const RequestPost = (props) => {
-  if (props.isUpdating) {
+
+useEffect(()=>{
+// console.log(props)
+},[props.post.isUpdating])
+
+  const testing  = (e)=>{
+    e.preventDefault()
+    console.log('this is clickng')
+    // props.post.isUpdating(true)
+    props.setPostToEdit(true)
+    console.log(props.post, 'props.post')
+  }
+
+
+  if (props.post.isUpdating) {
+
     return (
       <RequestCard>
         <div style={{margin: '15px'}}>
@@ -36,13 +51,15 @@ const RequestPost = (props) => {
         </div>
       </RequestCard>
     )
-  }
+  } 
   
   return (
     <RequestCard>
         <RequestTitle>{props.post.title}</RequestTitle>
         <RequestText>{props.post.text}</RequestText>
         <RequestButton>Edit Request</RequestButton>
+        <RequestButton onClick={testing}>Done-Testing</RequestButton>
+
         <RequestStatus status={props.post.status}>{props.post.status === 'pending' ? "Pending" : "Resolved"}</RequestStatus>
     </RequestCard>
   );

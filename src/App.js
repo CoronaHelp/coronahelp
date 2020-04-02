@@ -7,6 +7,8 @@ import { Nav, NavLinksSection, StyledLink, SignUpButton } from './components/sty
 import { Footer } from './components/styledFooter'
 import EditCard from './components/requestsPageComponents/EditCard'
 import RequestList from './components/requestsPageComponents/RequestList'
+import ExamplePage from './components/requestsPageComponents/examplePage'
+import NewRequest from './components/requestsPageComponents/NewRequest'
 
 function App() {
   return (
@@ -30,7 +32,10 @@ function App() {
       <Route path="/requestlist">
         <RequestList />
       </Route>
-      <Route path="/editrequestcard">
+      <Route path="/newrequest">
+        <NewRequest />
+      </Route>
+      <Route path="/testing">
         <EditCard />
       </Route>
       <Route path="/signup">
@@ -38,6 +43,9 @@ function App() {
       </Route>
       <Route path="/login">
         <LoginForm />
+      </Route>
+      <Route path="/example">
+        <ExamplePage />
       </Route>
       <Route path="/">
         <LandingPage />

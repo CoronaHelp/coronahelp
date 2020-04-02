@@ -47,6 +47,9 @@ export const RequestContainer = styled.div`
     align-items: center;
     min-height: 73vh;
     margin-top: 15vh;
+    ${theme.breakpoints.tablet} {
+        margin-top: 25vh;
+    }
 `
 
 
