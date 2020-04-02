@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { RequestCard, RequestButton, RequestText, RequestStatus, RequestTitle } from './styledRequestComponents'
-import { FormTitle, Form, FormSection, Label, Input } from '../formComponents/styledFormComponents'
+import { FormTitle, Form, FormSection, Label, Input, TextArea } from '../formComponents/styledFormComponents'
 
 const RequestPost = (props) => {
+
+  const [ formData, setFormData ] = useState({})
+
+  useEffect(() => {
+    if (props.postToEdit === props.post){
+        setFormData(props.postToEdit)
+    }
+
+  }, [props.postToEdit])
 
 useEffect(()=>{
 // console.log(props)
@@ -14,11 +23,14 @@ useEffect(()=>{
     // props.post.isUpdating(true)
     props.setPostToEdit(true)
     console.log(props.post, 'props.post')
+console.log(props.editThisPost, 'testing is updating')
+    // if (props.post.isUpdating===true){
+    //   return console.log("This is now true")
+    // }
   }
 
 
   if (props.post.isUpdating) {
-
     return (
       <RequestCard>
         <div style={{margin: '15px'}}>
@@ -34,7 +46,7 @@ useEffect(()=>{
               </FormSection>
               <FormSection style={{marginBottom: '15px'}}>
                   <Label htmlFor={`${props.post.id}RequestText`}>Request</Label>
-                  <textarea id={`${props.post.id}RequestText`} name={`${props.post.id}RequestText`} placeholder="Hello everyone, I'm looking for ..." 
+                  <TextArea id={`${props.post.id}RequestText`} name={`${props.post.id}RequestText`} placeholder="Hello everyone, I'm looking for ..." 
                   // value={formState.password} onChange={updateForm}
                   />
               </FormSection>
@@ -57,7 +69,7 @@ useEffect(()=>{
     <RequestCard>
         <RequestTitle>{props.post.title}</RequestTitle>
         <RequestText>{props.post.text}</RequestText>
-        <RequestButton>Edit Request</RequestButton>
+        <RequestButton onClick={props.setPostToEdit(props.post)}>Edit Request</RequestButton>
         <RequestButton onClick={testing}>Done-Testing</RequestButton>
 
         <RequestStatus status={props.post.status}>{props.post.status === 'pending' ? "Pending" : "Resolved"}</RequestStatus>

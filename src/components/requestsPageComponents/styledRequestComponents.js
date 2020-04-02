@@ -38,6 +38,8 @@ export const RequestStatus = styled.p`
     justify-content: center;
     align-items: center;
     margin-bottom: 0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 `  
 
 export const RequestContainer = styled.div`

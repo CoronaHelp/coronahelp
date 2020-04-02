@@ -75,3 +75,8 @@ export const Error = styled.p`
     color: red;
     margin-bottom: 0;
 `;
+
+export const TextArea = styled.textarea`
+    border-radius: 5px;
+    margin: 0 3px;
+`
