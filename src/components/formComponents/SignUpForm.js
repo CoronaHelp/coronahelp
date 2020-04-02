@@ -19,7 +19,7 @@ const SignUpForm = () => {
   const history = useHistory();
 
 
-    const history = useHistory()
+    
 
     const [submitDisabled, setSubmitDisabled] = useState(true)
 
