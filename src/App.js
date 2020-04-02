@@ -5,8 +5,8 @@ import LoginForm from './components/formComponents/LoginForm'
 import LandingPage from './components/landingPageComponents/LandingPage'
 import { Nav, NavLinksSection, StyledLink, SignUpButton } from './components/styledNav'
 import { Footer } from './components/styledFooter'
-
-
+import EditCard from './components/requestsPageComponents/EditCard'
+import RequestList from './components/requestsPageComponents/RequestList'
 
 function App() {
   return (
@@ -27,6 +27,12 @@ function App() {
       </NavLinksSection>
     </Nav>
     <Switch>
+      <Route path="/requestlist">
+        <RequestList />
+      </Route>
+      <Route path="/editrequestcard">
+        <EditCard />
+      </Route>
       <Route path="/signup">
         <SignUpForm />
       </Route>

@@ -8,9 +8,9 @@ export const FormContainer = styled.div`
     align-items: center;
     height: 100vh;
     margin-top: 12vh;
-    height: ${props => props.form === 'login' ? '76vh' : '88vh'};
+    height: ${props => props.form === 'login' ? '76vh' : '120vh'};
     ${theme.breakpoints.tablet} {
-        margin-top: 22vh;
+        margin-top: ${props => props.form === 'login' ? '22vh' : '30vh'};
         height: 82vh;
     }
 `
@@ -70,7 +70,8 @@ export const Label = styled.label`
 `;
 
 export const Error = styled.p`
-    font-size: 1.0rem;
+    font-size: 1.4rem;
     font-family: 'sans-serif';
     color: red;
+    margin-bottom: 0;
 `;

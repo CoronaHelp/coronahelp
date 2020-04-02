@@ -1,9 +1,12 @@
-import React, { useState, useEffect }from 'react'
+import React, { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 import axios from 'axios'
 import { FormButton, FormSection, Form, Label, Input, Error, FormContainer, FormTitle} from './styledFormComponents';
 
 const LoginForm = () => {
+
+    const history = useHistory()
 
     const [submitDisabled, setSubmitDisabled] = useState(true)
 
@@ -77,6 +80,7 @@ const LoginForm = () => {
                 username: "",
                 password: "",
             })
+            // history.push()
           })
           .catch(error => console.log("Post was not successful: ", error.response))
     }
