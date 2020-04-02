@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
-import axios from "axios";
+import AxiosWithAuth from "../../utils/AxiosWithAuth"
+import { useHistory } from "react-router-dom";
 import {
   FormButton,
   FormSection,
@@ -13,6 +14,8 @@ import {
 } from "./styledFormComponents";
 
 const SignUpForm = () => {
+  const history = useHistory();
+
   const [submitDisabled, setSubmitDisabled] = useState(true);
 
   const [post, setPost] = useState([]);
@@ -103,7 +106,7 @@ const SignUpForm = () => {
   const submitForm = event => {
     event.preventDefault();
     delete formState.passwordConfirmation;
-    axios
+    AxiosWithAuth()
       .post(
         "https://supplyhelper-be-staging.herokuapp.com/api/auth/register",
         formState
@@ -121,15 +124,10 @@ const SignUpForm = () => {
           password: "",
           passwordConfirmation: ""
         });
-        console.log("after submit formState", formState);
+        history.push("/login");
       })
       .catch(error => console.log("Post was not successful: ", error.response));
   };
-
-  // errorMessage: "Error registering: error: insert into 
-  // "users" ("email", "firstName", "lastName", "password", "username", "zipcode")
-  //  values ($1, $2, $3, $4, $5, $6) returning "id" -
-  //   duplicate key value violates unique constraint "users_pkey""
 
   return (
     <FormContainer login="signup">
@@ -221,7 +219,8 @@ const SignUpForm = () => {
             <Error>{formErrors.passwordConfirmation} </Error>
           )}
         </FormSection>
-        <FormButton disabled={submitDisabled}>Create Account</FormButton>
+        {/* <FormButton disabled={submitDisabled}>Create Account</FormButton> */}
+        <FormButton>Create Account</FormButton>
       </Form>
     </FormContainer>
   );
