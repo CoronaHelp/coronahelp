@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import AxiosWithAuth from "../../utils/AxiosWithAuth"
@@ -13,10 +14,15 @@ import {
   FormTitle
 } from "./styledFormComponents";
 
+
 const SignUpForm = () => {
   const history = useHistory();
 
-  const [submitDisabled, setSubmitDisabled] = useState(true);
+
+    const history = useHistory()
+
+    const [submitDisabled, setSubmitDisabled] = useState(true)
+
 
   const [post, setPost] = useState([]);
 
@@ -103,6 +109,7 @@ const SignUpForm = () => {
     console.log(formErrors);
   };
 
+
   const submitForm = event => {
     event.preventDefault();
     delete formState.passwordConfirmation;
@@ -128,6 +135,7 @@ const SignUpForm = () => {
       })
       .catch(error => console.log("Post was not successful: ", error.response));
   };
+
 
   return (
     <FormContainer login="signup">

@@ -136,21 +136,21 @@ html {
 h2 {
   font-size: 3.2rem;
   text-align: center;
-  color: #7F7FFF;
+  color: black;
   font-family: 'Raleway', "sans-serif";
 }
 h3 {
   font-size: 2.2rem;
   font-weight: bolder;
   text-align: center;
-  color: #7F7FFF;
+  color: black;
   font-family: 'Raleway', "sans-serif";
 }
 p {
   font-size: 1.6rem;
   font-family: 'Raleway', "sans-serif";
   line-height: 1.4;
-  color: #7F7FFF;
+  color: black;
 }
 
 
