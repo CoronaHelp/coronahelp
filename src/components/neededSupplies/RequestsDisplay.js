@@ -5,36 +5,37 @@ import axios from "axios"
 
 const RequestsDisplay = () => {
   const [request, setRequest] = useState([]);
-  const [searchResults, setSearchResults] = useState([])
-  const [searchTerm, setSearchTerm] = useState("");
+  const [zip, setzip] = useState([])
+  const [search, setSearch] = useState([])
+
   const [modal, setModal] = useState(false);
   const handleChange = e => {
-    setSearchTerm(e.target.value);
+    setzip(e.target.value);
   };
+  useEffect( ()=>{
+    const fetch = async ()=>{
+    const result = await axios.get(`https://supplyhelper-be-staging.herokuapp.com/api/requests/all/${search}/25`)
+    .then((res)=>{
+      console.log("My Res : ",res)
+      setRequest(res.data)
+    })
+    .catch((err)=>console.log("my error : " + err))
+    }
+    fetch()
+  },[search])
   const toggle = () => setModal(!modal);
-  useEffect(() => {
-    setRequest();
-  },[]);
-  useEffect(() => {
-    const results = request.filter(req =>
-     
-        req.zip.startsWith(searchTerm)
-      
-      // req.zip.includes(searchTerm)
-    
-  );
-  setSearchResults(results);
-}, [searchTerm]);
-  
+ 
   return (
     <div className = "requestContainer">
       <input
         type="text"
-        placeholder="Search"
-        value={searchTerm}
+        placeholder="Zip Code"
+        value={zip}
         onChange={handleChange}
       />
-      {searchResults.map(t => {
+      <button onClick = {()=>setSearch(zip)} > Submit</button>
+      
+      {request.map(t => {
         return(
         <div  className = "mycontainer">
         <h1 onClick = {()=>toggle()}>{t.title}</h1>
@@ -43,6 +44,9 @@ const RequestsDisplay = () => {
       )})}
     </div>
   );
+  
+
 }
 
 export default RequestsDisplay;
+

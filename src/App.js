@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
 import SignUpForm from "./components/formComponents/SignUpForm";
@@ -13,6 +14,7 @@ import { Footer } from "./components/styledFooter";
 import RequestsDisplay from "./components/neededSupplies/RequestsDisplay";
 import Map from "./components/mapbox/Map.js";
 import PrivateRoute from "./utils/PrivateRoute";
+
 
 function App() {
   return (
@@ -59,6 +61,7 @@ function App() {
       {/* <Route exact path="/map" component={Map} /> */}
 
       <Footer>
+
         <a href="">
           <svg
             id="livetype"
