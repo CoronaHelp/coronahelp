@@ -3,7 +3,6 @@ import { v4 as uuid } from 'uuid'
 import RequestPost from './RequestPost'
 import { RequestContainer, RequestButton } from './styledRequestComponents'
 import NewRequest from './NewRequest'
-import { Link } from 'react-router-dom'
 
 function RequestList() {
   let listOfPosts = [
@@ -50,7 +49,7 @@ function RequestList() {
             }
             // <button onClick={() => setPostToEdit(member)}>Edit</button>
             )}
-            { makingNewRequest ? <NewRequest postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} /> : 
+            { makingNewRequest ? <NewRequest postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} postToEdit={postToEdit} setPostToEdit={setPostToEdit} /> : 
                 <div style={{width: "100%"}}><RequestButton style={{margin: "auto"}} onClick={() => setMakingNewRequest(true)}>New Request</RequestButton></div>}
         </div>
     </RequestContainer>

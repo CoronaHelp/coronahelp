@@ -1,7 +1,7 @@
 import React, { useState }from 'react'
 import { v4 as uuid } from 'uuid'
-import { RequestButton, RequestContainer } from './styledRequestComponents'
-import { FormTitle, Form, FormSection, Label, Input } from '../formComponents/styledFormComponents'
+import { RequestButton, RequestCard } from './styledRequestComponents'
+import { FormTitle, Form, FormSection, Label, Input, TextArea } from '../formComponents/styledFormComponents'
 const NewRequest = (props) => {
 
     const [formData, setFormData] = useState({
@@ -35,9 +35,9 @@ const NewRequest = (props) => {
     }
 
     return (
-        <>
-        <FormTitle>New Request</FormTitle>
-            <Form style={{border: "1px solid black", padding: "0px"}} onSubmit={addToList}
+        <RequestCard>
+        <FormTitle style={{marginTop: "10px"}}>New Request</FormTitle>
+            <Form onSubmit={addToList}
             // onSubmit={submitForm}
             >
                 <FormSection>
@@ -47,11 +47,11 @@ const NewRequest = (props) => {
                 </FormSection>
                 <FormSection style={{marginBottom: '15px'}}>
                     <Label htmlFor="newRequestText">Message</Label>
-                        <textarea id="newRequestText" name="text" value={formData.text} placeholder="Hello everyone, I'm looking for ..." onChange={updateForm}/>
+                    <TextArea id="newRequestText" name="text" value={formData.text} placeholder="Hello everyone, I'm looking for ..." onChange={updateForm}/>
                 </FormSection>
                 <RequestButton>Post Request</RequestButton>
             </Form>
-        </>
+        </RequestCard>
     );
 };
 
