@@ -3,10 +3,14 @@ import { RequestCard, RequestButton, RequestText, RequestStatus, RequestTitle } 
 import { FormTitle, Form, FormSection, Label, Input, TextArea } from '../formComponents/styledFormComponents'
 import { ButtonToggle } from "reactstrap";
 
+const initial = { title: '', text: '', status: 'pending', isUpdating: false}
+
 const RequestPost = (props) => {
   // console.log(props, 'props in Request post')
 
   const [ formData, setFormData ] = useState({})
+const [updating, setUpdating] = useState(false);
+const [postToUpdate, setPostToUpdate]=useState(initial)
 
   useEffect(() => {
     if (props.postToEdit === props.post){
@@ -14,6 +18,22 @@ const RequestPost = (props) => {
     }
 
   }, [props.post, props.postToEdit])
+
+const editPost = post =>{
+  setUpdating(true);
+  setPostToUpdate(post);
+}
+
+  const changeHandler =()=>{
+console.log('something')
+  };
+
+  const submitForm= (e)=>{
+    e.preventDefault();
+    console.log('Hi I submitted--allegedly')
+  }
+
+  
 
 // useEffect(()=>{
 // // console.log(props)
@@ -74,24 +94,31 @@ const RequestPost = (props) => {
   <>
  <h2>This is working</h2> 
 <FormTitle>Form Update</FormTitle>
-          <Form 
-          // onSubmit={submitForm}
-          >
-              <FormSection>
+          <Form onSubmit={submitForm}>
+          <FormSection>
                   <Label htmlFor={`${props.post.id}RequestTitle`}>Title</Label>
-                  <Input id={`${props.post.id}RequestTitle`} name={`${props.post.id}RequestTitle`} type="text" placeholder="Title" 
-                  // value={formState.name} onChange={updateForm}
+                  <Input 
+                  value={props.post.title} 
+                  type="text" 
+                  placeholder="Title" 
+                  // onChange={e=>{setPostToUpdate({...postToUpdate, name: e.target.value})}}
                   />
-              </FormSection>
+                  </FormSection>
+              {/* <FormSection>
+                  <Label htmlFor={`${props.post.id}RequestTitle`}>Title</Label>
+                  <Input value={postToUpdate.title} id={`${props.post.id}RequestTitle`} name={`${props.post.id}RequestTitle`} type="text" placeholder="Title" 
+                  // value={formState.name} onChange={updateForm}
+                  /> 
+              </FormSection>*/}
               <FormSection style={{marginBottom: '15px'}}>
                   <Label htmlFor={`${props.post.id}RequestText`}>Request</Label>
-                  <TextArea id={`${props.post.id}RequestText`} name={`${props.post.id}RequestText`} placeholder="Hello everyone, I'm looking for ..." 
+                  <TextArea value={props.post.text} name={`${props.post.text}`} placeholder="Hello everyone, I'm looking for ..." 
                   // value={formState.password} onChange={updateForm}
                   />
               </FormSection>
               <FormSection>
                 <Label htmlFor={`${props.post.id}RequestStatus`}>
-                    <input style={{display: 'inline-block'}} id={`${props.post.id}RequestStatus`} name={`${props.post.id}RequestStatus`} type='checkbox' 
+                    <input style={{display: 'inline-block'}} value={props.post.status} id={`${props.post.id}RequestStatus`} name={`${props.post.id}RequestStatus`} type='checkbox' 
                     // checked={formState.pineapple} onChange={updateOrder}
                     />
                     <p style={{display: 'inline-block', marginLeft: '10px', fontFamily: 'times-new-roman'}}>Resolved</p>
