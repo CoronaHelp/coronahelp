@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { v4 as uuid } from 'uuid'
 import RequestPost from './RequestPost'
-import { RequestContainer, RequestButton } from './styledRequestComponents'
+import { RequestContainer, NewRequestButton } from './styledRequestComponents'
 import NewRequest from './NewRequest'
 
 function RequestList() {
@@ -55,15 +55,16 @@ function RequestList() {
   return (
     
     <RequestContainer>
-        <h1>Your Requests</h1>
+        <h1 style={{marginBottom: "60px"}}>Your Requests</h1>
+        { makingNewRequest ? <NewRequest postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} postToEdit={postToEdit} setPostToEdit={setPostToEdit} /> : 
+                <div style={{width: "100%"}}><NewRequestButton style={{margin: "auto"}} onClick={() => setMakingNewRequest(true)}>+</NewRequestButton></div>}
         <div className="team">
-            {postList.map(post => {
+            {postList.reverse().map(post => {
                 return <RequestPost toggle={toggleItem} key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
             }
             // <button onClick={() => setPostToEdit(member)}>Edit</button>
             )}
-            { makingNewRequest ? <NewRequest postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} postToEdit={postToEdit} setPostToEdit={setPostToEdit} /> : 
-                <div style={{width: "100%"}}><RequestButton style={{margin: "auto"}} onClick={() => setMakingNewRequest(true)}>New Request</RequestButton></div>}
+            
         </div>
     </RequestContainer>
     
