@@ -10,6 +10,7 @@ const RequestPost = (props) => {
 
   const [ formData, setFormData ] = useState({})
 const [updating, setUpdating] = useState(false);
+const [newPost, setNewPost]= useState('')
 const [postToUpdate, setPostToUpdate]=useState(initial)
 
   useEffect(() => {
@@ -19,72 +20,30 @@ const [postToUpdate, setPostToUpdate]=useState(initial)
 
   }, [props.post, props.postToEdit])
 
-const editPost = post =>{
-  setUpdating(true);
-  setPostToUpdate(post);
-}
+// const editPost = post =>{
+//   setUpdating(true);
+//   setPostToUpdate(post);
+// }
 
-  const changeHandler =()=>{
-console.log('something')
+  const changeHandler =(e)=>{
+    console.log(e.target.value)
+    setPostToUpdate({...postToUpdate, [e.target.name]: e.target.value})
   };
 
   const submitForm= (e)=>{
     e.preventDefault();
-    console.log('Hi I submitted--allegedly')
+    setNewPost(e.target.value)
+  //   setFormData({
+  //     title: '',
+  //     text: '',
+  //     status: 'pending'
+  // })
+    console.log('Hi I submitted--allegedly', setFormData)
   }
 
   
 
-// useEffect(()=>{
-// // console.log(props)
-// },[props.post.isUpdating])
 
-//   const testing  = (e)=>{
-//     e.preventDefault()
-//     console.log('this is clickng')
-//     // props.post.isUpdating(true)
-//     props.setPostToEdit(true)
-//     console.log(props.post, 'props.post')
-// console.log(props.editThisPost, 'testing is updating')
-//     // if (props.post.isUpdating===true){
-//     //   return console.log("This is now true")
-//     // }
-//   }
-
-
-  // ! props.post.isUpdating ?
-  //  (
-  //     <RequestCard>
-  //       <div style={{margin: '15px'}}>
-  //         <FormTitle>Form Update</FormTitle>
-  //         <Form 
-  //         // onSubmit={submitForm}
-  //         >
-  //             <FormSection>
-  //                 <Label htmlFor={`${props.post.id}RequestTitle`}>Title</Label>
-  //                 <Input id={`${props.post.id}RequestTitle`} name={`${props.post.id}RequestTitle`} type="text" placeholder="Title" 
-  //                 // value={formState.name} onChange={updateForm}
-  //                 />
-  //             </FormSection>
-  //             <FormSection style={{marginBottom: '15px'}}>
-  //                 <Label htmlFor={`${props.post.id}RequestText`}>Request</Label>
-  //                 <TextArea id={`${props.post.id}RequestText`} name={`${props.post.id}RequestText`} placeholder="Hello everyone, I'm looking for ..." 
-  //                 // value={formState.password} onChange={updateForm}
-  //                 />
-  //             </FormSection>
-  //             <FormSection>
-  //               <Label htmlFor={`${props.post.id}RequestStatus`}>
-  //                   <input style={{display: 'inline-block'}} id={`${props.post.id}RequestStatus`} name={`${props.post.id}RequestStatus`} type='checkbox' 
-  //                   // checked={formState.pineapple} onChange={updateOrder}
-  //                   />
-  //                   <p style={{display: 'inline-block', marginLeft: '10px', fontFamily: 'times-new-roman'}}>Resolved</p>
-  //               </Label>
-  //             </FormSection>
-  //             <RequestButton onClick={() => props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post)}>Done</RequestButton>
-  //         </Form>
-  //       </div>
-  //     </RequestCard>
-  //   ) : 
   
   
   return (
@@ -101,6 +60,9 @@ console.log('something')
                   value={props.post.title} 
                   type="text" 
                   placeholder="Title" 
+                  name="title"
+                  onChange={changeHandler}
+
                   // onChange={e=>{setPostToUpdate({...postToUpdate, name: e.target.value})}}
                   />
                   </FormSection>
