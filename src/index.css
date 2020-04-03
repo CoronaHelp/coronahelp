@@ -119,7 +119,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 table {
@@ -131,39 +131,31 @@ table {
 }
 html {
   font-size: 62.5%;
-  font-family: 'Raleway', "sans-serif";
+  font-family: "Raleway", "sans-serif";
 }
 h2 {
-  font-size: 3.2rem;
-  text-align: center;
-  color: #7F7FFF;
-  font-family: 'Raleway', "sans-serif";
+  font-family: "Raleway", "sans-serif";
 }
 h3 {
-  font-size: 2.2rem;
-  font-weight: bolder;
-  text-align: center;
-  color: #7F7FFF;
-  font-family: 'Raleway', "sans-serif";
+  /* font-weight: bolder; */
+
+  font-family: "Raleway", "sans-serif";
 }
 p {
-  font-size: 1.6rem;
-  font-family: 'Raleway', "sans-serif";
-  line-height: 1.4;
-  color: #7F7FFF;
+  font-family: "Raleway", "sans-serif";
+  /* line-height: 1.4; */
 }
-
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

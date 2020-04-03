@@ -1,8 +1,5 @@
 const theme = {
-    colors: {
-        darkGreen: "#00B589",
-        lavender: "#7F7FFF"
-    },
+
     fontsizes: {
         
     },

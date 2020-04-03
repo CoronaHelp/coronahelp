@@ -1,0 +1,26 @@
+/* .test {
+  position: absolute;
+  top: -113px;
+} */
+.left {
+  flex-grow: 1;
+  max-width: 50%;
+  width: fit-content;
+}
+
+/* .right {
+  position: relative;
+  background: url("./assets/blueTile2.svg");
+  background-size: cover;
+} */
+.right {
+  position: relative;
+  width: 50%;
+  background: url("./assets/blueTile3.svg");
+  background-size: cover;
+  background-position: 25% 75%;
+  height: 100vh;
+  @media screen and (max-width: 992px) {
+    width: 10%
+  }
+}
