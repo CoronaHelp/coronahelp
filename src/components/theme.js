@@ -1,5 +1,8 @@
 const theme = {
-
+    colors: {
+        buttonbg: "black",
+        main: "white"
+    },
     fontsizes: {
         
     },
