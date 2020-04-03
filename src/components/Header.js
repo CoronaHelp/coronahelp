@@ -16,16 +16,21 @@ import {
 import styled from "styled-components";
 
 const StyledNavbarBrand = styled(NavbarBrand)`
-    font-family: 'Righteous', cursive;
     font-size: 22px;
-    background: white;
     padding: 5px 20px;
-    border-radius: 20px;
-    border: 3px solid #2C88D9;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 `
 
 const StyledNavbar = styled(Navbar)`
     margin-bottom: 20px;
+`
+
+const Logo = styled.img`
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
 `
 const Header = props => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,9 +38,9 @@ const Header = props => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <StyledNavbar color="light" light expand="md">
+    <StyledNavbar light expand="md">
       <Navbar className="container">
-        <StyledNavbarBrand href="/">Supply Assistance</StyledNavbarBrand>
+        <StyledNavbarBrand href="/"><Logo src={require("../assets/supplyHelperLogo.png")}/>Supply Helper</StyledNavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
