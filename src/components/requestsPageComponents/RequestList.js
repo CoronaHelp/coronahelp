@@ -41,7 +41,16 @@ function RequestList() {
   //   setMemberToEdit(null)
   // }
 
-
+  const toggleItem = clickedId => {
+    const newTaskList = postList.map(item => {
+      if (item.id === clickedId) {
+        return { ...item, isUpdating: !item.isUpdating };
+      } else {
+        return item;
+      }
+    });
+    setPostList(newTaskList);
+  };
 
   return (
     
@@ -49,7 +58,7 @@ function RequestList() {
         <h1>Your Requests</h1>
         <div className="team">
             {postList.map(post => {
-                return <RequestPost key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
+                return <RequestPost toggle={toggleItem} key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
             }
             // <button onClick={() => setPostToEdit(member)}>Edit</button>
             )}

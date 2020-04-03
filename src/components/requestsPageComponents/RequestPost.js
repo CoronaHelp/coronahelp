@@ -105,9 +105,10 @@ const RequestPost = (props) => {
             {/* <h2>This isn't working</h2> */}
             <RequestTitle>{props.post.title}</RequestTitle>
         <RequestText>{props.post.text}</RequestText>
-         <RequestButton onClick={props.setPostToEdit(!props.post)}>Edit Request</RequestButton>
+         {/* <RequestButton onClick={props.setPostToEdit(!props.post)}>Edit Request</RequestButton> */}
 
-
+        {/* <RequestButton onClick={()=>{console.log('i have clicked'); console.log(props.post.isUpdating); console.log(props.data, 'formData'); console.log(props.post, 'this'); console.log(props.toggle(props.post.isUpdating)); console.log(props.post.isUpdating)} }>Edit Request</RequestButton> */}
+        <RequestButton onClick={()=>{console.log(props.toggle(props.post.id))}}>Edit Request</RequestButton>
         <RequestStatus status={props.post.status}>{props.post.status === 'pending' ? "Pending" : "Resolved"}</RequestStatus>
 </>
 ) }   
