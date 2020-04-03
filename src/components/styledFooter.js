@@ -3,7 +3,7 @@ import theme from './theme'
 
 export const Footer = styled.footer`
     height: 80px;
-    background-color: ${theme.colors.lavender};
+    background-color: ${theme.colors.main};
     display: flex;
     justify-content: center;
     align-items: center;
