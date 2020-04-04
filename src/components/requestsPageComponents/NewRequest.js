@@ -71,8 +71,8 @@ delete formData[item]
       }
 
     return (
-        <>
-        <RequestCard>
+   
+        <RequestCard style={{marginTop: "40px"}}>
         <FormTitle style={{marginTop: "10px"}}>New Request</FormTitle>
             <Form onSubmit={submitForm} >
                 <FormSection>
@@ -100,9 +100,6 @@ delete formData[item]
                 <RequestButton>Post Request</RequestButton>
             </Form>
         </RequestCard>
-
-
-        </>
     );
 };
 
