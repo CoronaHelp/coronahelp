@@ -27,7 +27,6 @@ const [postToUpdate, setPostToUpdate]=useState(initial)
 
 
   const changeHandler =(e)=>{
-    console.log(e.target.value)
     setPostToUpdate({...postToUpdate,[e.target.name]: e.target.value})
   };
 
@@ -45,7 +44,6 @@ const [postToUpdate, setPostToUpdate]=useState(initial)
 const keys = Object.keys(postToUpdate)
 console.log(keys, 'Object keys')
 keys.map(item=> {
-
     if(item !== 'title' && item !== 'description' &&  item !== 'id'){
 delete postToUpdate[item]
   }
@@ -98,7 +96,10 @@ delete postToUpdate[item]
                     <p style={{display: 'inline-block', marginLeft: '10px', fontFamily: 'times-new-roman'}}>Resolved</p>
                 </Label>
               </FormSection>
-              <RequestButton onClick={() => props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post)}>Done</RequestButton>
+              <RequestButton onClick={() => {props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post); console.log('Its changed'); setTimeout(function() {
+  //your code to be executed after 2 second
+  props.toggle(props.post.id)
+}, 2000)}}>Done</RequestButton>
           </Form>
           </> 
           ):(
