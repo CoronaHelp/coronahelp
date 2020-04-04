@@ -24,7 +24,7 @@ const NewRequest = (props) => {
             status: 'pending',
             isUpdating: false
         }
-        props.setPostList([...props.postList, newRequest])
+        props.setPostList([newRequest, ...props.postList])
         props.setMakingNewRequest(false)
         setFormData({
             title: '',
@@ -35,7 +35,7 @@ const NewRequest = (props) => {
     }
 
     return (
-        <RequestCard>
+        <RequestCard style={{marginTop: "40px"}}>
         <FormTitle style={{marginTop: "10px"}}>New Request</FormTitle>
             <Form onSubmit={addToList}
             // onSubmit={submitForm}

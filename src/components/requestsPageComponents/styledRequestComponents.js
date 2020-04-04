@@ -1,6 +1,25 @@
 import styled from 'styled-components'
 import theme from '../theme'
 
+export const NewRequestButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${theme.colors.buttonbg};
+    color: white;
+    width: 400px;
+    height: 200px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 100px;
+
+    &:hover {
+        transform: scale(1.1,1.1);
+        transition-duration: 0.8s;
+    }
+`
+
 export const RequestButton = styled.button`
     display: flex;
     justify-content: center;
