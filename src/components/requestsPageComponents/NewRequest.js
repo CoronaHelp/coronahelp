@@ -25,7 +25,7 @@ const NewRequest = (props) => {
             isUpdating: false
         }
         props.setPostList([newRequest, ...props.postList])
-        props.setMakingNewRequest(false)
+        // props.setMakingNewRequest(false)
         setFormData({
             title: '',
             text: '',
