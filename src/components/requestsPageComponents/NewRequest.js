@@ -29,8 +29,7 @@ const NewRequest = (props) => {
             status: 'pending',
             isUpdating: false
         }
-        props.setPostList([...props.postList, newRequest])
-        // props.setMakingNewRequest(false)
+        props.setPostList([newRequest, ...props.postList])        // props.setMakingNewRequest(false)
         setFormData({
             title: '',
             description: '',
