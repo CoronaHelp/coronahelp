@@ -16,7 +16,8 @@ function RequestList() {
     
   ]
 
-  const [ makingNewRequest, setMakingNewRequest ] = useState(false)
+  // const [ makingNewRequest, setMakingNewRequest ] = useState(false)
+  
   // const [newTitleText, setNewTitleText]=useState()
   // const [isEditingThis, setIsEdiditngThis]=useState(false)
     
@@ -56,9 +57,12 @@ function RequestList() {
     
     <RequestContainer>
         <h1 style={{marginBottom: "60px"}}>Your Requests</h1>
-        { makingNewRequest ? <NewRequest postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} postToEdit={postToEdit} setPostToEdit={setPostToEdit} /> : 
-                <div style={{width: "100%"}}><NewRequestButton style={{margin: "auto", marginTop: "50px"}} onClick={() => setMakingNewRequest(true)}>+</NewRequestButton></div>}
-        <div className="team">
+        {/* { makingNewRequest ?  */}
+        {<NewRequest postList={postList} setPostList={setPostList} postToEdit={postToEdit} setPostToEdit={setPostToEdit} 
+        // setMakingNewRequest={setMakingNewRequest} 
+        /> }
+        {/* : <div style={{width: "100%"}}><NewRequestButton style={{margin: "auto", marginTop: "50px"}} onClick={() => setMakingNewRequest(true)}>+</NewRequestButton></div>} */}
+        <div>
             {postList.reverse().map(post => {
                 return <RequestPost toggle={toggleItem} key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
             }
