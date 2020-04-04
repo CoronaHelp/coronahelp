@@ -30,7 +30,7 @@ const NewRequest = (props) => {
             isUpdating: false
         }
         props.setPostList([...props.postList, newRequest])
-        props.setMakingNewRequest(false)
+        // props.setMakingNewRequest(false)
         setFormData({
             title: '',
             description: '',
@@ -59,8 +59,9 @@ delete formData[item]
         .post(`/api/requests`, formData)
         .then(res=>{
           console.log(res, 'res in new request')
-          setFormData(res.data)
+          setFormData([res.data, formData])
           console.log(res.data.created)
+          props.setMakingNewRequest(true)
         })
         .catch(err=>console.log(err, "error"))
         console.log('Hi I submitted--allegedly')
@@ -77,7 +78,7 @@ delete formData[item]
                         id="newRequestTitle" 
                         name="title" 
                         type="text" 
-                        value={formData.title} 
+                        value={formData.title || ''} 
                         placeholder="Title" 
                         onChange={updateForm}/>
                     </Label>
@@ -88,7 +89,7 @@ delete formData[item]
                     id="newRequestText" 
                     name="description" 
                     type="text"
-                    value={formData.description} 
+                    value={formData.description || ''} 
                     placeholder="Hello everyone, I'm looking for ..." 
                     onChange={updateForm}/>
 

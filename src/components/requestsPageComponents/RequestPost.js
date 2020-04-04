@@ -33,13 +33,7 @@ const [postToUpdate, setPostToUpdate]=useState(initial)
 
   const submitForm= (e)=>{
     e.preventDefault();
-    
-// for(let x in postToUpdate){
-// if( postToUpdate[x] !== "title" || postToUpdate[x] !== "description" ){
-//   console.log(postToUpdate[x], '--- *')
-//   // delete postToUpdate[x]
-// }
-// }
+
 
 const keys = Object.keys(postToUpdate)
 console.log(keys, 'Object keys')
@@ -56,6 +50,8 @@ delete postToUpdate[item]
     .then(res=>{
       console.log(res)
       setPostToUpdate(res.data)
+      console.log(props.setMakingNewRequest, 'set making request')
+      props.setDep(true);
     })
     // setNewPost(e.target.value)
     console.log('Hi I submitted--allegedly')
@@ -99,7 +95,7 @@ delete postToUpdate[item]
               <RequestButton onClick={() => {props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post); console.log('Its changed'); setTimeout(function() {
   //your code to be executed after 2 second
   props.toggle(props.post.id)
-}, 2000)}}>Done</RequestButton>
+}, 800)}}>Done</RequestButton>
           </Form>
           </> 
           ):(

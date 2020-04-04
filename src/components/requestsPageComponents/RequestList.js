@@ -18,10 +18,10 @@ function RequestList() {
   ]
 
   const [ makingNewRequest, setMakingNewRequest ] = useState(false)
+  const [dep, setDep]=useState(false)
   const [ postList, setPostList ] = useState([])
 
   const [ postToEdit, setPostToEdit ] = useState(null)
-  
   // const editMember = () => {
   //   const newItem = teamList.map((member, index)=> {
   //     if (memberToEdit.id === member.id){
@@ -56,9 +56,12 @@ function RequestList() {
     .then(res=>{
       console.log(res)
 setPostList(res.data)
+setDep(false)
+
+console.log(makingNewRequest, 'making new request')
     })
     .catch(err=>console.log(err))
-  }, [])
+  }, [dep, makingNewRequest])
 
   return (
     
@@ -66,7 +69,7 @@ setPostList(res.data)
         <h1>Your Requests</h1>
         <div className="team">
             {postList.map(post => {
-                return <RequestPost toggle={toggleItem} setPostList={setPostList} key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
+                return <RequestPost toggle={toggleItem} setDep={setDep} dep={dep} setPostList={setPostList} key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
             }
             // <button onClick={() => setPostToEdit(member)}>Edit</button>
             )}
