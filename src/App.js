@@ -18,6 +18,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import RequestList from './components/requestsPageComponents/RequestList'
 import ExamplePage from './components/requestsPageComponents/examplePage'
 import NewRequest from './components/requestsPageComponents/NewRequest'
+import ProfilePage from "./components/profileComponents/ProfilePage";
 
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
       </Route>
      <Route path="/example">
         <ExamplePage />
+      </Route>
+      <Route path="/profile/:id">
+        <ProfilePage />
       </Route>
       </Switch>
 
