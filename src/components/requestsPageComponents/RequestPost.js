@@ -14,7 +14,7 @@ const RequestPost = (props) => {
 
   const [ formData, setFormData ] = useState({})
 // const [updating, setUpdating] = useState(false);
-const [newPost, setNewPost]= useState('')
+// const [newPost, setNewPost]= useState('')
 const [postToUpdate, setPostToUpdate]=useState(initial)
 
   useEffect(() => {
@@ -45,16 +45,17 @@ delete postToUpdate[item]
   )
     console.log(postToUpdate, '<---POST TO UPDATE')
 
-    AxiosWithAuth()
-    .put(`/api/requests/${postToUpdate.id}`, postToUpdate)
-    .then(res=>{
-      console.log(res)
-      setPostToUpdate(res.data)
-      console.log(props.setMakingNewRequest, 'set making request')
-      props.setDep(true);
-    })
-    // setNewPost(e.target.value)
-    console.log('Hi I submitted--allegedly')
+     AxiosWithAuth() //axios
+      .put(`/api/requests/${postToUpdate.id}`, postToUpdate)
+      .then(res=>{
+        console.log(res)
+        setPostToUpdate(res.data)
+        props.setDep(true);
+      })
+      .then(props.toggle(props.post.id))
+      .catch(err=>console.log(err))
+
+      console.log('Hi I submitted--allegedly')
   }
 
   
@@ -92,10 +93,12 @@ delete postToUpdate[item]
                     <p style={{display: 'inline-block', marginLeft: '10px', fontFamily: 'times-new-roman'}}>Resolved</p>
                 </Label>
               </FormSection>
-              <RequestButton onClick={() => {props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post); console.log('Its changed'); setTimeout(function() {
+              <RequestButton onClick={() => {props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post); console.log('Its changed'); 
+              // setTimeout(function() {
   //your code to be executed after 2 second
-  props.toggle(props.post.id)
-}, 800)}}>Done</RequestButton>
+  // props.toggle(props.post.id)
+// }, 800)
+}}>Done</RequestButton>
           </Form>
           </> 
           ):(

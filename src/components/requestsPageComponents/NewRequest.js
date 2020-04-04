@@ -61,8 +61,11 @@ delete formData[item]
           console.log(res, 'res in new request')
           setFormData([res.data, formData])
           console.log(res.data.created)
-          props.setMakingNewRequest(true)
+        //   props.setMakingNewRequest(true)
+        props.setDep(true);
+
         })
+        // .then(props.toggle(props.post.id))
         .catch(err=>console.log(err, "error"))
         console.log('Hi I submitted--allegedly')
       }

@@ -58,7 +58,6 @@ function RequestList() {
 setPostList(res.data)
 setDep(false)
 
-console.log(makingNewRequest, 'making new request')
     })
     .catch(err=>console.log(err))
   }, [dep, makingNewRequest])
@@ -73,7 +72,7 @@ console.log(makingNewRequest, 'making new request')
             }
             // <button onClick={() => setPostToEdit(member)}>Edit</button>
             )}
-            { makingNewRequest ? <NewRequest postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} postToEdit={postToEdit} setPostToEdit={setPostToEdit} /> : 
+            { makingNewRequest ? <NewRequest dep={dep} setDep={setDep} postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} postToEdit={postToEdit} setPostToEdit={setPostToEdit} /> : 
                 <div style={{width: "100%"}}><RequestButton style={{margin: "auto"}} onClick={() => setMakingNewRequest(true)}>New Request</RequestButton></div>}
         </div>
     </RequestContainer>
