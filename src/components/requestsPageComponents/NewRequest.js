@@ -2,17 +2,20 @@ import React, { useState }from 'react'
 import { v4 as uuid } from 'uuid'
 import { RequestButton, RequestCard } from './styledRequestComponents'
 import { FormTitle, Form, FormSection, Label, Input, TextArea } from '../formComponents/styledFormComponents'
+import AxiosWithAuth from '../../utils/AxiosWithAuth'
+
 const NewRequest = (props) => {
 
     const [formData, setFormData] = useState({
         title: '',
-        text: '',
-        status: 'pending'
+        description: '',
+        status: 'pending',
+        userID: 1,
+        itemID: 1,
     })
 
     const updateForm = event => {
         setFormData({...formData, [event.target.name]: event.target.value})
-        // console.log(formData)
     }
 
     const addToList = event => {
@@ -20,7 +23,9 @@ const NewRequest = (props) => {
         const newRequest = {
             id: uuid(),
             title: formData.title,
-            text: formData.text,
+            description: formData.description,
+            userID: 9,
+	        itemID: 1,
             status: 'pending',
             isUpdating: false
         }
@@ -28,30 +33,72 @@ const NewRequest = (props) => {
         props.setMakingNewRequest(false)
         setFormData({
             title: '',
-            text: '',
+            description: '',
+            userID: 9,
+	        itemID: 1,
             status: 'pending'
         })
 
     }
 
+
+    const submitForm= (e)=>{
+        e.preventDefault();
+    
+        const keys = Object.keys(formData)
+console.log(keys, 'Object keys')
+keys.map(item=> {
+    if(item !== 'title' && item !== 'description' &&  item !== 'id' && item !== 'userID' &&  item !== 'itemID'){
+delete formData[item]
+  }
+}
+  )
+        console.log(formData, '<---FORM TO ADD')
+    
+        AxiosWithAuth()
+        .post(`/api/requests`, formData)
+        .then(res=>{
+          console.log(res, 'res in new request')
+          setFormData(res.data)
+          console.log(res.data.created)
+        })
+        .catch(err=>console.log(err, "error"))
+        console.log('Hi I submitted--allegedly')
+      }
+
     return (
+        <>
         <RequestCard>
         <FormTitle style={{marginTop: "10px"}}>New Request</FormTitle>
-            <Form onSubmit={addToList}
-            // onSubmit={submitForm}
-            >
+            <Form onSubmit={submitForm} >
                 <FormSection>
                     <Label htmlFor="newRequestTitle">Title
-                        <Input id="newRequestTitle" name="title" type="text" value={formData.title} placeholder="Title" onChange={updateForm}/>
+                        <Input 
+                        id="newRequestTitle" 
+                        name="title" 
+                        type="text" 
+                        value={formData.title} 
+                        placeholder="Title" 
+                        onChange={updateForm}/>
                     </Label>
                 </FormSection>
                 <FormSection style={{marginBottom: '15px'}}>
                     <Label htmlFor="newRequestText">Message</Label>
-                    <TextArea id="newRequestText" name="text" value={formData.text} placeholder="Hello everyone, I'm looking for ..." onChange={updateForm}/>
+                    <TextArea 
+                    id="newRequestText" 
+                    name="description" 
+                    type="text"
+                    value={formData.description} 
+                    placeholder="Hello everyone, I'm looking for ..." 
+                    onChange={updateForm}/>
+
                 </FormSection>
                 <RequestButton>Post Request</RequestButton>
             </Form>
         </RequestCard>
+
+
+        </>
     );
 };
 
