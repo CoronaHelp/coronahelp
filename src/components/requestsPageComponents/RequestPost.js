@@ -88,7 +88,7 @@ delete postToUpdate[item]
               <FormSection>
                 <Label htmlFor={`${props.post.id}RequestStatus`}>
                     <input style={{display: 'inline-block'}} value={props.post.status} id={`${props.post.id}RequestStatus`} name={`${props.post.id}RequestStatus`} type='checkbox' 
-                    // checked={formState.pineapple} onChange={updateOrder}
+                    // checked={formState.something} onChange={updateSomething}
                     />
                     <p style={{display: 'inline-block', marginLeft: '10px', fontFamily: 'times-new-roman'}}>Resolved</p>
                 </Label>

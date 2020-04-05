@@ -29,7 +29,10 @@ const NewRequest = (props) => {
             status: 'pending',
             isUpdating: false
         }
-        props.setPostList([newRequest, ...props.postList])        // props.setMakingNewRequest(false)
+
+        props.setPostList([newRequest, ...props.postList])
+        // props.setMakingNewRequest(false)
+
         setFormData({
             title: '',
             description: '',
@@ -70,7 +73,7 @@ delete formData[item]
       }
 
     return (
-   
+
         <RequestCard style={{marginTop: "40px"}}>
         <FormTitle style={{marginTop: "10px"}}>New Request</FormTitle>
             <Form onSubmit={submitForm} >
