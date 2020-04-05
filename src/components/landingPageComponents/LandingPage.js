@@ -1,14 +1,24 @@
-import React from 'react'
-import { Wrapper, Section, HomeHeaderImg, HomeHeaderContent, GettingStarted,
-    SectionHeader, StepsContainer, Step, StepHeader } from './styledLandingComponents'
-import QuickSearchForm from '../formComponents/QuickSearchForm'
+import React from 'react';
+import {
+    Wrapper,
+    Section,
+    HomeHeaderImg,
+    HomeHeaderContent,
+    GettingStarted,
+    SectionHeader,
+    StepsContainer,
+    Step,
+    StepHeader,
+} from './styledLandingComponents';
+import QuickSearchForm from '../formComponents/QuickSearchForm';
+import { dontPanic } from '../../assets/index.js';
 
 const LandingPage = () => {
     return(
         <div>
             <Wrapper>
                 <Section>
-                    <HomeHeaderImg src="./dont-panic.jpg" className="home-header-img" alt="the words 'don't panic' on a toilet paper roll"/>
+                    <HomeHeaderImg src={dontPanic} className="home-header-img" alt="the words 'don't panic' on a toilet paper roll"/>
                     <HomeHeaderContent>
                         <div><h2 style={{marginBottom: '20px'}}>Welcome to Supply Helper</h2></div>
                         <div>
