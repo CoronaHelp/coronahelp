@@ -3,8 +3,10 @@ import axios from "axios";
 const AxiosWithAuth = () => {
   const token = localStorage.getItem("token");
 
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
+
   return axios.create({
-    baseURL: "https://supplyhelper-be-staging.herokuapp.com",
+    baseURL: backendURL,
     headers: {
       Authorization: token
     }

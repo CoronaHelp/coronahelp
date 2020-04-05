@@ -1,5 +1,5 @@
 import React, { useState }from 'react'
-import { v4 as uuid } from 'uuid'
+// import { v4 as uuid } from 'uuid'
 import { RequestButton, RequestCard } from './styledRequestComponents'
 import { FormTitle, Form, FormSection, Label, Input, TextArea } from '../formComponents/styledFormComponents'
 import AxiosWithAuth from '../../utils/AxiosWithAuth'
@@ -18,47 +18,49 @@ const NewRequest = (props) => {
         setFormData({...formData, [event.target.name]: event.target.value})
     }
 
-    const addToList = event => {
-        event.preventDefault()
-        const newRequest = {
-            id: uuid(),
-            title: formData.title,
-            description: formData.description,
-            userID: 9,
-	        itemID: 1,
-            status: 'pending',
-            isUpdating: false
-        }
+    // const addToList = event => {
+    //     event.preventDefault()
+    //     const newRequest = {
+    //         id: uuid(),
+    //         title: formData.title,
+    //         description: formData.description,
+    //         userID: 9,
+	//         itemID: 1,
+    //         status: 'pending',
+    //         isUpdating: false
+    //     }
 
-        props.setPostList([newRequest, ...props.postList])
-        // props.setMakingNewRequest(false)
+    //     props.setPostList([newRequest, ...props.postList])
+    //     // props.setMakingNewRequest(false)
 
-        setFormData({
-            title: '',
-            description: '',
-            userID: 9,
-	        itemID: 1,
-            status: 'pending'
-        })
+    //     setFormData({
+    //         title: '',
+    //         description: '',
+    //         userID: 9,
+	//         itemID: 1,
+    //         status: 'pending'
+    //     })
 
-    }
+    // }
 
 
     const submitForm= (e)=>{
         e.preventDefault();
     
-        const keys = Object.keys(formData)
-console.log(keys, 'Object keys')
-keys.map(item=> {
-    if(item !== 'title' && item !== 'description' &&  item !== 'id' && item !== 'userID' &&  item !== 'itemID'){
-delete formData[item]
-  }
-}
-  )
-        console.log(formData, '<---FORM TO ADD')
+        // const keys = Object.keys(formData)
+        // console.log(keys, 'Object keys')
+        // keys.map(item=> {
+        //     if(item !== 'title' && item !== 'description' &&  item !== 'id' && item !== 'userID' &&  item !== 'itemID'){
+        // delete formData[item]
+        // }
+        // }
+        // )
+        // console.log(formData, '<---FORM TO ADD')
+        const { title, description, id, userID, itemID } = formData;
+        const newRequestData = { title, description, id, userID, itemID };
     
         AxiosWithAuth()
-        .post(`/api/requests`, formData)
+        .post(`/api/requests`, newRequestData)
         .then(res=>{
           console.log(res, 'res in new request')
           setFormData([res.data, formData])

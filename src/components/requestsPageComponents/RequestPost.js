@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { RequestCard, RequestButton, RequestText, RequestStatus, RequestTitle } from './styledRequestComponents'
 import { FormTitle, Form, FormSection, Label, Input, TextArea } from '../formComponents/styledFormComponents'
-import { ButtonToggle } from "reactstrap";
-import axios from "axios";
+// import { ButtonToggle } from "reactstrap";
+// import axios from "axios";
 import AxiosWithAuth from '../../utils/AxiosWithAuth'
 
 
@@ -35,18 +35,21 @@ const [postToUpdate, setPostToUpdate]=useState(initial)
     e.preventDefault();
 
 
-const keys = Object.keys(postToUpdate)
-console.log(keys, 'Object keys')
-keys.map(item=> {
-    if(item !== 'title' && item !== 'description' &&  item !== 'id'){
-delete postToUpdate[item]
-  }
-}
-  )
-    console.log(postToUpdate, '<---POST TO UPDATE')
+    // const keys = Object.keys(postToUpdate)
+    // console.log(keys, 'Object keys')
+    // keys.map(item=> {
+    //     if(item !== 'title' && item !== 'description' &&  item !== 'id'){
+    // delete postToUpdate[item]
+    //   }
+    // }
+    // )
+    
+    // console.log(postToUpdate, '<---POST TO UPDATE');
+    const { title, description, id } = postToUpdate;
+    const updatedPost = { title, description, id };
 
      AxiosWithAuth() //axios
-      .put(`/api/requests/${postToUpdate.id}`, postToUpdate)
+      .put(`/api/requests/${updatedPost.id}`, updatedPost)
       .then(res=>{
         console.log(res)
         setPostToUpdate(res.data)
@@ -56,7 +59,7 @@ delete postToUpdate[item]
       .catch(err=>console.log(err))
 
       console.log('Hi I submitted--allegedly')
-  }
+  };
 
   
   return (
