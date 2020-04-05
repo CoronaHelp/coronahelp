@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios'
 import { v4 as uuid } from 'uuid'
 import RequestPost from './RequestPost'
 import { RequestContainer, NewRequestButton } from './styledRequestComponents'
@@ -16,15 +17,13 @@ function RequestList() {
     
   ]
 
-  // const [ makingNewRequest, setMakingNewRequest ] = useState(false)
-  
-  // const [newTitleText, setNewTitleText]=useState()
-  // const [isEditingThis, setIsEdiditngThis]=useState(false)
-    
-  const [ postList, setPostList ] = useState(listOfPosts)
+
+  const [ makingNewRequest, setMakingNewRequest ] = useState(false)
+  const [dep, setDep]=useState(false)
+  const [ postList, setPostList ] = useState([])
+
 
   const [ postToEdit, setPostToEdit ] = useState(null)
-  
   // const editMember = () => {
   //   const newItem = teamList.map((member, index)=> {
   //     if (memberToEdit.id === member.id){
@@ -53,22 +52,38 @@ function RequestList() {
     setPostList(newTaskList);
   };
 
+  useEffect(() => {
+    axios
+    .get(`https://supplyhelper-be-staging.herokuapp.com/api/requests/all/90210/2`)
+    .then(res=>{
+      console.log(res)
+setPostList(res.data)
+setDep(false)
+
+    })
+    .catch(err=>console.log(err))
+  }, [dep, makingNewRequest])
+
   return (
     
     <RequestContainer>
+    
         <h1 style={{marginBottom: "60px"}}>Your Requests</h1>
         {/* { makingNewRequest ?  */}
-        {<NewRequest postList={postList} setPostList={setPostList} postToEdit={postToEdit} setPostToEdit={setPostToEdit} 
+        { <NewRequest dep={dep} setDep={setDep} postList={postList} setPostList={setPostList} setMakingNewRequest={setMakingNewRequest} postToEdit={postToEdit} setPostToEdit={setPostToEdit}
+
         // setMakingNewRequest={setMakingNewRequest} 
         /> }
         {/* : <div style={{width: "100%"}}><NewRequestButton style={{margin: "auto", marginTop: "50px"}} onClick={() => setMakingNewRequest(true)}>+</NewRequestButton></div>} */}
         <div>
             {postList.reverse().map(post => {
-                return <RequestPost toggle={toggleItem} key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
+                return <RequestPost toggle={toggleItem} setDep={setDep} dep={dep} setPostList={setPostList} key= {post.id} post={post} setPostToEdit={setPostToEdit} isUpdating={postToEdit === post}/>
+
             }
             // <button onClick={() => setPostToEdit(member)}>Edit</button>
             )}
             
+
         </div>
     </RequestContainer>
     

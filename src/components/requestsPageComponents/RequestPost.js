@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { RequestCard, RequestButton, RequestText, RequestStatus, RequestTitle } from './styledRequestComponents'
 import { FormTitle, Form, FormSection, Label, Input, TextArea } from '../formComponents/styledFormComponents'
 import { ButtonToggle } from "reactstrap";
+import axios from "axios";
+import AxiosWithAuth from '../../utils/AxiosWithAuth'
+
+
 
 const initial = { title: '', text: '', status: 'pending', isUpdating: false}
 
@@ -9,42 +13,51 @@ const RequestPost = (props) => {
   // console.log(props, 'props in Request post')
 
   const [ formData, setFormData ] = useState({})
-const [updating, setUpdating] = useState(false);
-const [newPost, setNewPost]= useState('')
+// const [updating, setUpdating] = useState(false);
+// const [newPost, setNewPost]= useState('')
 const [postToUpdate, setPostToUpdate]=useState(initial)
 
   useEffect(() => {
+    setPostToUpdate(props.post)
     if (props.postToEdit === props.post){
         setFormData(props.postToEdit)
     }
 
   }, [props.post, props.postToEdit])
 
-// const editPost = post =>{
-//   setUpdating(true);
-//   setPostToUpdate(post);
-// }
 
   const changeHandler =(e)=>{
-    console.log(e.target.value)
-    setPostToUpdate({...postToUpdate, [e.target.name]: e.target.value})
+    setPostToUpdate({...postToUpdate,[e.target.name]: e.target.value})
   };
+
 
   const submitForm= (e)=>{
     e.preventDefault();
-    setNewPost(e.target.value)
-  //   setFormData({
-  //     title: '',
-  //     text: '',
-  //     status: 'pending'
-  // })
-    console.log('Hi I submitted--allegedly', setFormData)
+
+
+const keys = Object.keys(postToUpdate)
+console.log(keys, 'Object keys')
+keys.map(item=> {
+    if(item !== 'title' && item !== 'description' &&  item !== 'id'){
+delete postToUpdate[item]
+  }
+}
+  )
+    console.log(postToUpdate, '<---POST TO UPDATE')
+
+     AxiosWithAuth() //axios
+      .put(`/api/requests/${postToUpdate.id}`, postToUpdate)
+      .then(res=>{
+        console.log(res)
+        setPostToUpdate(res.data)
+        props.setDep(true);
+      })
+      .then(props.toggle(props.post.id))
+      .catch(err=>console.log(err))
+
+      console.log('Hi I submitted--allegedly')
   }
 
-  
-
-
-  
   
   return (
     <RequestCard>
@@ -57,24 +70,18 @@ const [postToUpdate, setPostToUpdate]=useState(initial)
           <FormSection>
                   <Label htmlFor={`${props.post.id}RequestTitle`}>Title</Label>
                   <Input 
-                  value={props.post.title} 
+                  value={postToUpdate.title || ''} 
                   type="text" 
                   placeholder="Title" 
                   name="title"
                   onChange={changeHandler}
-
-                  // onChange={e=>{setPostToUpdate({...postToUpdate, name: e.target.value})}}
                   />
                   </FormSection>
-              {/* <FormSection>
-                  <Label htmlFor={`${props.post.id}RequestTitle`}>Title</Label>
-                  <Input value={postToUpdate.title} id={`${props.post.id}RequestTitle`} name={`${props.post.id}RequestTitle`} type="text" placeholder="Title" 
-                  // value={formState.name} onChange={updateForm}
-                  /> 
-              </FormSection>*/}
               <FormSection style={{marginBottom: '15px'}}>
                   <Label htmlFor={`${props.post.id}RequestText`}>Request</Label>
-                  <TextArea value={props.post.text} name={`${props.post.text}`} placeholder="Hello everyone, I'm looking for ..." 
+                  <TextArea value={postToUpdate.description} 
+                  onChange={changeHandler}
+                  name="description" placeholder="Hello everyone, I'm looking for ..." 
                   // value={formState.password} onChange={updateForm}
                   />
               </FormSection>
@@ -86,14 +93,19 @@ const [postToUpdate, setPostToUpdate]=useState(initial)
                     <p style={{display: 'inline-block', marginLeft: '10px', fontFamily: 'times-new-roman'}}>Resolved</p>
                 </Label>
               </FormSection>
-              <RequestButton onClick={() => props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post)}>Done</RequestButton>
+              <RequestButton onClick={() => {props.isUpdating ? props.setPostToEdit({}): props.setPostToEdit(props.post); console.log('Its changed'); 
+              // setTimeout(function() {
+  //your code to be executed after 2 second
+  // props.toggle(props.post.id)
+// }, 800)
+}}>Done</RequestButton>
           </Form>
           </> 
           ):(
             <>
             {/* <h2>This isn't working</h2> */}
             <RequestTitle>{props.post.title}</RequestTitle>
-        <RequestText>{props.post.text}</RequestText>
+        <RequestText>{props.post.description}</RequestText>
          {/* <RequestButton onClick={props.setPostToEdit(!props.post)}>Edit Request</RequestButton> */}
 
         {/* <RequestButton onClick={()=>{console.log('i have clicked'); console.log(props.post.isUpdating); console.log(props.data, 'formData'); console.log(props.post, 'this'); console.log(props.toggle(props.post.isUpdating)); console.log(props.post.isUpdating)} }>Edit Request</RequestButton> */}
