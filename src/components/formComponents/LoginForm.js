@@ -36,12 +36,6 @@ const LoginForm = () => {
     password: ""
   });
 
-  useEffect(() => {
-    formSchema.isValid(formState).then(valid => {
-      setSubmitDisabled(!valid);
-    });
-  }, [formState, submitDisabled]);
-
   const formSchema = yup.object().shape({
     username: yup.string().required("Please input your username."),
     password: yup
@@ -49,6 +43,12 @@ const LoginForm = () => {
       .min(6, "This password must be at least 6 characters long")
       .required("Please input a password of at least 6 characters")
   });
+
+  useEffect(() => {
+    formSchema.isValid(formState).then(valid => {
+      setSubmitDisabled(!valid);
+    });
+  }, [formState, submitDisabled, formSchema]);
 
   const validateData = event => {
     yup

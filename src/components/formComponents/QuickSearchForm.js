@@ -1,12 +1,12 @@
 import React, { useState, useEffect }from 'react'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 import axios from 'axios'
 import { FormButton, FormSection, Form, Label, Input, Error } from './styledFormComponents';
 
 const QuickSearchForm = () => {
 
-    const history = useHistory()
+    // const history = useHistory()
 
     const [submitDisabled, setSubmitDisabled] = useState(true)
 
@@ -22,14 +22,6 @@ const QuickSearchForm = () => {
         item: ""
     })
 
-    useEffect(() => {
-        formSchema.isValid(formState)
-            .then(valid => {
-                setSubmitDisabled(!valid)
-                
-            })
-    }, [formState, submitDisabled])
-
     const formSchema = yup.object().shape({
         zipcode: yup.string()
             .test("5-char-length", "Please enter a 5 digit zipcode", val => val.length === 5)
@@ -38,6 +30,14 @@ const QuickSearchForm = () => {
         item: yup.string()
             .required("Please input your last name."),
     })
+
+    useEffect(() => {
+        formSchema.isValid(formState)
+            .then(valid => {
+                setSubmitDisabled(!valid)
+                
+            })
+    }, [formState, submitDisabled, formSchema])
 
     const validateData = event => {
         yup

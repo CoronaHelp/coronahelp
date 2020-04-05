@@ -46,12 +46,6 @@ const SignUpForm = () => {
     passwordConfirmation: ""
   });
 
-  useEffect(() => {
-    formSchema.isValid(formState).then(valid => {
-      setSubmitDisabled(!valid);
-    });
-  }, [formState, submitDisabled]);
-
   const formSchema = yup.object().shape({
     username: yup.string().required("Please input your username."),
     email: yup
@@ -77,6 +71,14 @@ const SignUpForm = () => {
       .string()
       .oneOf([yup.ref("password"), null], "Passwords must match")
   });
+
+  useEffect(() => {
+    formSchema.isValid(formState).then(valid => {
+      setSubmitDisabled(!valid);
+    });
+  }, [formState, submitDisabled, formSchema]);
+
+  
 
   const validateData = event => {
     yup
@@ -109,13 +111,13 @@ const SignUpForm = () => {
     console.log(formErrors);
   };
 
-
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
   const submitForm = event => {
     event.preventDefault();
     delete formState.passwordConfirmation;
     AxiosWithAuth()
       .post(
-        "https://supplyhelper-be-staging.herokuapp.com/api/auth/register",
+        `${ backendURL }/api/auth/register`,
         formState
       )
       .then(response => {
