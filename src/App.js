@@ -1,9 +1,9 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
 import SignUpForm from "./components/formComponents/SignUpForm";
 import LoginForm from "./components/formComponents/LoginForm";
-import EditCard from './components/requestsPageComponents/EditCard'
+import EditCard from "./components/requestsPageComponents/EditCard"
 import LandingPage from "./components/landingPageComponents/LandingPage";
 import {
   Nav,
@@ -14,14 +14,33 @@ import {
 import { Footer } from "./components/styledFooter";
 import RequestsDisplay from "./components/neededSupplies/RequestsDisplay";
 import Map from "./components/mapbox/Map.js";
+import AxiosWithAuth from "./utils/AxiosWithAuth";
 import PrivateRoute from "./utils/PrivateRoute";
-import RequestList from './components/requestsPageComponents/RequestList'
-import ExamplePage from './components/requestsPageComponents/examplePage'
-import NewRequest from './components/requestsPageComponents/NewRequest';
-import {appStore} from './assets/index.js';
+import RequestList from "./components/requestsPageComponents/RequestList"
+import ExamplePage from "./components/requestsPageComponents/examplePage"
+import NewRequest from "./components/requestsPageComponents/NewRequest";
+import UserNav from "./components/userNav/UserNav";
+import {appStore} from "./assets/index.js";
 
 
 function App() {
+  const coronaHelpToken = localStorage.getItem("coronaHelpToken");
+  const [ token, setToken ] = useState(coronaHelpToken);
+  const [ user, setUser ] = useState(null);
+  const getUserInfo = () => {
+    if (token) {
+      AxiosWithAuth()
+      .get("/api/users/user-info")
+      .then(response => setUser(response.data))
+      .catch(error => console.log("Could not get user info: ", error.response));
+    }
+  };
+  const logOutUser = () => {
+    localStorage.removeItem("coronaHelpToken");
+    setToken(null);
+    setUser(null);
+  };
+  useEffect(getUserInfo, [ token ]);
   return (
     <>
       <Nav>
@@ -38,12 +57,18 @@ function App() {
           </NavLink>
           {/* <NavLink><StyledLink>About</StyledLink></NavLink> */}
 
-          <NavLink to="/login" style={{ textDecoration: "none" }}>
-            <StyledLink>Login</StyledLink>
-          </NavLink>
-          <NavLink to="/signup" style={{ textDecoration: "none" }}>
-            <SignUpButton>Sign Up</SignUpButton>
-          </NavLink>
+          {
+            user ?
+            <UserNav user = { user } logOutUser = { logOutUser } /> :
+            <>
+              <NavLink to="/login" style={{ textDecoration: "none" }}>
+                <StyledLink>Login</StyledLink>
+              </NavLink>
+              <NavLink to="/signup" style={{ textDecoration: "none" }}>
+                <SignUpButton>Sign Up</SignUpButton>
+              </NavLink>
+            </>
+          }
         </NavLinksSection>
       </Nav>
       <Switch>
@@ -51,7 +76,7 @@ function App() {
           <SignUpForm />
         </Route>
         <Route path="/login">
-          <LoginForm />
+          <LoginForm updateToken = { setToken } />
         </Route>
         <Route exact path="/">
           <LandingPage />

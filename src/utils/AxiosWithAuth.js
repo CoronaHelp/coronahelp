@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const AxiosWithAuth = () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("coronaHelpToken");
 
   const backendURL = process.env.REACT_APP_BACKEND_URL;
 

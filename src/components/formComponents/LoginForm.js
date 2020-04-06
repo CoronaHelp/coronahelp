@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
-import AxiosWithAuth from "../../utils/AxiosWithAuth"
+import AxiosWithAuth from "../../utils/AxiosWithAuth";
 import {
   FormButton,
   FormSection,
@@ -15,7 +15,7 @@ import {
 } from "./styledFormComponents";
 
 
-const LoginForm = () => {
+const LoginForm = ({ updateToken }) => {
   const history = useHistory();
 
 
@@ -24,7 +24,7 @@ const LoginForm = () => {
     const [submitDisabled, setSubmitDisabled] = useState(true)
 
 
-  const [post, setPost] = useState([]);
+  // const [post, setPost] = useState([]);
 
   const [formState, setFormState] = useState({
     username: "",
@@ -87,14 +87,16 @@ const LoginForm = () => {
     AxiosWithAuth()
       .post("/api/auth/login", formState)
       .then(response => {
-        console.log("Posted successfully: ", post);
-        console.log("Login response", response);
-        localStorage.setItem("token", response.data.token);
-        setPost(response.data);
-        setFormState({
-          username: "",
-          password: ""
-        });
+        // console.log("Posted successfully: ", post);
+        // console.log("Login response", response);
+        const token = response.data.token;
+        localStorage.setItem("coronaHelpToken", token);
+        updateToken(token);
+        // setPost(response.data);
+        // setFormState({
+        //   username: "",
+        //   password: ""
+        // });
         history.push("/");
       })
       .catch(error => console.log("Post was not successful: ", error.response));
